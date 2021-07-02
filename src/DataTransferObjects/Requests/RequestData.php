@@ -1,8 +1,6 @@
 <?php
 
-
 namespace Blabs\SalesManago\DataTransferObjects\Requests;
-
 
 use JsonSerializable;
 use Spatie\DataTransferObject\FlexibleDataTransferObject;

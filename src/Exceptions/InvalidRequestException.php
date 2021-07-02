@@ -1,8 +1,6 @@
 <?php
 
-
 namespace Blabs\SalesManago\Exceptions;
-
 
 use Exception;
 use GuzzleHttp\Psr7\Response as Response;
@@ -27,9 +25,9 @@ class InvalidRequestException extends Exception
     /**
      * Extended Exception constructor.
      *
-     * @param string   $requestUrl    Request URL
-     * @param array    $requestData   Request data
-     * @param Response $response      Response
+     * @param string   $requestUrl  Request URL
+     * @param array    $requestData Request data
+     * @param Response $response    Response
      */
     public function __construct($requestUrl, array $requestData, Response $response)
     {
@@ -40,7 +38,6 @@ class InvalidRequestException extends Exception
 
         parent::__construct($this->message, 0, null);
     }
-
 
     /**
      * Returning request url.

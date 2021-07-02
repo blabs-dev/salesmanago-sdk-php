@@ -1,8 +1,6 @@
 <?php
 
-
 namespace Blabs\SalesManago;
-
 
 use Blabs\SalesManago\Services\ContactService;
 use GuzzleHttp\Client as HttpClient;
@@ -10,21 +8,21 @@ use GuzzleHttp\Client as HttpClient;
 class ServiceFactory
 {
     /**
-     * Object containing configuration parameters such as api key, secret and client id
+     * Object containing configuration parameters such as api key, secret and client id.
      *
      * @var Config
      */
     protected Config $config;
 
     /**
-     * The Sales Manago Client instance in charge of performing requests to the service
+     * The Sales Manago Client instance in charge of performing requests to the service.
      *
      * @var Client
      */
     protected Client $client;
 
     /**
-     * An array containing all instanced services
+     * An array containing all instanced services.
      *
      * @var array
      */
@@ -32,7 +30,8 @@ class ServiceFactory
 
     /**
      * ServiceFactory constructor.
-     * @param Config $config
+     *
+     * @param Config          $config
      * @param HttpClient|null $http_client
      */
     public function __construct(Config $config, HttpClient $http_client = null)
@@ -43,7 +42,7 @@ class ServiceFactory
     }
 
     /**
-     * Creates an instance of the Contact Service
+     * Creates an instance of the Contact Service.
      *
      * @return mixed
      */
@@ -53,9 +52,10 @@ class ServiceFactory
     }
 
     /**
-     * Creates an instance of the service specified in argument
+     * Creates an instance of the service specified in argument.
      *
      * @param string $className
+     *
      * @return mixed
      */
     protected function createService(string $className)

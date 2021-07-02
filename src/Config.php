@@ -1,8 +1,6 @@
 <?php
 
-
 namespace Blabs\SalesManago;
-
 
 class Config
 {
@@ -14,6 +12,7 @@ class Config
 
     /**
      * Config constructor.
+     *
      * @param string $clientId
      * @param string $apiKey
      * @param string $apiSecret
@@ -27,31 +26,37 @@ class Config
 
     /**
      * @param string $clientId
+     *
      * @return Config
      */
     public function setClientId(string $clientId): Config
     {
         $this->clientId = $clientId;
+
         return $this;
     }
 
     /**
      * @param string $apiKey
+     *
      * @return Config
      */
     public function setApiKey(string $apiKey): Config
     {
         $this->apiKey = $apiKey;
+
         return $this;
     }
 
     /**
      * @param string $apiSecret
+     *
      * @return Config
      */
     public function setApiSecret(string $apiSecret): Config
     {
         $this->apiSecret = $apiSecret;
+
         return $this;
     }
 
@@ -84,6 +89,6 @@ class Config
      */
     public function getSha(): string
     {
-        return sha1($this->apiKey . $this->clientId . $this->apiSecret);
+        return sha1($this->apiKey.$this->clientId.$this->apiSecret);
     }
 }
