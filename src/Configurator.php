@@ -2,7 +2,7 @@
 
 namespace Blabs\SalesManago;
 
-class Config
+class Configurator
 {
     private string $clientId;
 
@@ -27,9 +27,9 @@ class Config
     /**
      * @param string $clientId
      *
-     * @return Config
+     * @return Configurator
      */
-    public function setClientId(string $clientId): Config
+    public function setClientId(string $clientId): Configurator
     {
         $this->clientId = $clientId;
 
@@ -39,9 +39,9 @@ class Config
     /**
      * @param string $apiKey
      *
-     * @return Config
+     * @return Configurator
      */
-    public function setApiKey(string $apiKey): Config
+    public function setApiKey(string $apiKey): Configurator
     {
         $this->apiKey = $apiKey;
 
@@ -51,9 +51,9 @@ class Config
     /**
      * @param string $apiSecret
      *
-     * @return Config
+     * @return Configurator
      */
-    public function setApiSecret(string $apiSecret): Config
+    public function setApiSecret(string $apiSecret): Configurator
     {
         $this->apiSecret = $apiSecret;
 

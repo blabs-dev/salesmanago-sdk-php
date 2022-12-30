@@ -14,9 +14,9 @@ class Client
     /**
      * Object containing configuration parameters such as api key, secret and client id.
      *
-     * @var Config
+     * @var Configurator
      */
-    private Config $config;
+    private Configurator $config;
 
     /**
      * The GuzzleHttp\Client instance used to perform http requests.
@@ -28,10 +28,10 @@ class Client
     /**
      * Client constructor.
      *
-     * @param Config          $config
+     * @param Configurator          $config
      * @param HttpClient|null $httpClient
      */
-    public function __construct(Config $config, HttpClient $httpClient = null)
+    public function __construct(Configurator $config, HttpClient $httpClient = null)
     {
         $this->config = $config;
         $this->httpClient = $httpClient ?? new HttpClient(['base_uri' => self::API_BASE_URI]);

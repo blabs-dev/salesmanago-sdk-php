@@ -10,9 +10,9 @@ class ServiceFactory
     /**
      * Object containing configuration parameters such as api key, secret and client id.
      *
-     * @var Config
+     * @var Configurator
      */
-    protected Config $config;
+    protected Configurator $config;
 
     /**
      * The Sales Manago Client instance in charge of performing requests to the service.
@@ -31,10 +31,10 @@ class ServiceFactory
     /**
      * ServiceFactory constructor.
      *
-     * @param Config          $config
+     * @param Configurator          $config
      * @param HttpClient|null $http_client
      */
-    public function __construct(Config $config, HttpClient $http_client = null)
+    public function __construct(Configurator $config, HttpClient $http_client = null)
     {
         $this->client = new Client($config, $http_client);
         $this->config = $config;
