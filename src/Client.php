@@ -45,9 +45,9 @@ class Client
      *
      * @return ResponseInterface
      */
-    public function doRequest(string $apiMethod, RequestData $data): ResponseInterface
+    public function doRequest(string $apiMethod, array $data): ResponseInterface
     {
-        $data = $this->mergeData($this->createAuthData(), $data->toArray());
+        $data = $this->mergeData($this->createAuthData(), $data);
 
         try {
             $response = $this->httpClient->post($apiMethod, ['json' => $data]);

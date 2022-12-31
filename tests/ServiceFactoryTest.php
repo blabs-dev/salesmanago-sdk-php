@@ -4,7 +4,7 @@ namespace Blabs\SalesManago\Test;
 
 use Blabs\SalesManago\Configurator;
 use Blabs\SalesManago\ServiceFactory;
-use Blabs\SalesManago\Services\ContactService;
+use Blabs\SalesManago\Services\ApiService;
 use PHPUnit\Framework\TestCase;
 
 class ServiceFactoryTest extends TestCase
@@ -17,6 +17,6 @@ class ServiceFactoryTest extends TestCase
         $configurator = new Configurator('test-client-id', 'test-api-secret');
         $factory = new ServiceFactory($configurator);
         $service = $factory->createContactService();
-        $this->assertEquals(ContactService::class, get_class($service));
+        $this->assertEquals(ApiService::class, get_class($service));
     }
 }

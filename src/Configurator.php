@@ -14,8 +14,8 @@ class Configurator
      * Config constructor.
      *
      * @param string $clientId
-     * @param string $apiKey
      * @param string $apiSecret
+     * @param string|null $apiKey
      */
     public function __construct(string $clientId, string $apiSecret, string $apiKey = null)
     {

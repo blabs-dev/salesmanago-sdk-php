@@ -2,7 +2,7 @@
 
 namespace Blabs\SalesManago;
 
-use Blabs\SalesManago\Services\ContactService;
+use Blabs\SalesManago\Services\ApiService;
 use GuzzleHttp\Client as HttpClient;
 
 class ServiceFactory
@@ -48,7 +48,7 @@ class ServiceFactory
      */
     public function createContactService()
     {
-        return $this->createService(ContactService::class);
+        return $this->createService(ApiService::class);
     }
 
     /**
