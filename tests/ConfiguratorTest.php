@@ -19,8 +19,8 @@ class ConfiguratorTest extends TestCase
 
         $configurator = new Configurator(
             $this->testClientId,
+            $this->testApiSecret,
             $this->testApiKey,
-            $this->testApiSecret
         );
 
         $this->assertEquals(

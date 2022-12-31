@@ -17,11 +17,21 @@ class Configurator
      * @param string $apiKey
      * @param string $apiSecret
      */
-    public function __construct(string $clientId, string $apiKey, string $apiSecret)
+    public function __construct(string $clientId, string $apiSecret, string $apiKey = null)
     {
         $this->clientId = $clientId;
-        $this->apiKey = $apiKey;
         $this->apiSecret = $apiSecret;
+        $this->apiKey = $apiKey ?? $this->generateRandomString();
+    }
+
+    private function generateRandomString($length = 10): string {
+        $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        $charactersLength = strlen($characters);
+        $randomString = '';
+        for ($i = 0; $i < $length; $i++) {
+            $randomString .= $characters[rand(0, $charactersLength - 1)];
+        }
+        return $randomString;
     }
 
     /**
