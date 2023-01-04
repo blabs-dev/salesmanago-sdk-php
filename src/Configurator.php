@@ -13,8 +13,8 @@ class Configurator
     /**
      * Config constructor.
      *
-     * @param string $clientId
-     * @param string $apiSecret
+     * @param string      $clientId
+     * @param string      $apiSecret
      * @param string|null $apiKey
      */
     public function __construct(string $clientId, string $apiSecret, string $apiKey = null)
@@ -24,13 +24,15 @@ class Configurator
         $this->apiKey = $apiKey ?? $this->generateRandomString();
     }
 
-    private function generateRandomString($length = 10): string {
+    private function generateRandomString($length = 10): string
+    {
         $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
         $charactersLength = strlen($characters);
         $randomString = '';
         for ($i = 0; $i < $length; $i++) {
             $randomString .= $characters[rand(0, $charactersLength - 1)];
         }
+
         return $randomString;
     }
 

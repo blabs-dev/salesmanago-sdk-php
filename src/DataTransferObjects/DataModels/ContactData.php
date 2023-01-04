@@ -18,14 +18,16 @@ class ContactData extends DataTransferObject
         $data = [
             'email' => $attributes['email'],
             'phone' => $attributes['phone'],
-            'name' => $attributes['name'],
+            'name'  => $attributes['name'],
         ];
 
-        if (array_key_exists('externalId', $attributes))
+        if (array_key_exists('externalId', $attributes)) {
             $data['externalId'] = $attributes['externalId'];
+        }
 
-        if (array_key_exists('address', $attributes))
+        if (array_key_exists('address', $attributes)) {
             $data['address'] = new AddressData($attributes['address']);
+        }
 
         return new self($data);
     }

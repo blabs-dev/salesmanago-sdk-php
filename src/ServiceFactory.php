@@ -31,7 +31,7 @@ class ServiceFactory
     /**
      * ServiceFactory constructor.
      *
-     * @param Configurator          $config
+     * @param Configurator    $config
      * @param HttpClient|null $http_client
      */
     public function __construct(Configurator $config, HttpClient $http_client = null)

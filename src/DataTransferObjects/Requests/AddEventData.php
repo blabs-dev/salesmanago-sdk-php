@@ -19,18 +19,20 @@ class AddEventData extends DataTransferObject
         $hasEmail = array_key_exists('email', $attributes) && !empty($attributes['email']);
         $hasContactId = array_key_exists('contactId', $attributes) && !empty($attributes['contactId']);
 
-        if (!$hasEmail && !$hasContactId)
+        if (!$hasEmail && !$hasContactId) {
             throw new \InvalidArgumentException('email or contact id are mandatory fields');
+        }
 
         $data = [
-            'owner' => $attributes['owner'],
-            'contactEvent' => new EventData($attributes['contactEvent'])
+            'owner'        => $attributes['owner'],
+            'contactEvent' => new EventData($attributes['contactEvent']),
         ];
 
-        if ($hasEmail)
+        if ($hasEmail) {
             $data['email'] = $attributes['email'];
-        elseif ($hasContactId)
+        } elseif ($hasContactId) {
             $data['contactId'] = $attributes['contactId'];
+        }
 
         return new self($data);
     }

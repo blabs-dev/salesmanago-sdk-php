@@ -16,7 +16,6 @@ class ConfiguratorTest extends TestCase
      */
     public function it_can_generate_configuration_data_properly()
     {
-
         $configurator = new Configurator(
             $this->testClientId,
             $this->testApiSecret,

@@ -3,7 +3,7 @@
 namespace Blabs\SalesManago\Exceptions;
 
 use Exception;
-use GuzzleHttp\Psr7\Response as Response;
+use GuzzleHttp\Psr7\Response;
 
 class InvalidRequestException extends Exception
 {

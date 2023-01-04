@@ -28,7 +28,7 @@ class Client
     /**
      * Client constructor.
      *
-     * @param Configurator          $config
+     * @param Configurator    $config
      * @param HttpClient|null $httpClient
      */
     public function __construct(Configurator $config, HttpClient $httpClient = null)
