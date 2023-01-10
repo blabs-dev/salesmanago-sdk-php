@@ -5,7 +5,7 @@
   "require": {
     "php": "^8.0",
     "guzzlehttp/guzzle": "^7.3",
-    "spatie/data-transfer-object": "^2.8",
+    "spatie/data-transfer-object": "^3.7",
     "ext-json": "*"
   },
   "require-dev": {
