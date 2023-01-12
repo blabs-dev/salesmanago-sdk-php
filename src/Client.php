@@ -34,7 +34,13 @@ class Client
     public function __construct(Configurator $config, HttpClient $httpClient = null)
     {
         $this->config = $config;
-        $this->httpClient = $httpClient ?? new HttpClient(['base_uri' => self::API_BASE_URI]);
+        $this->httpClient = $httpClient ?? new HttpClient([
+                //'base_uri' => self::API_BASE_URI,
+                'headers' => [
+                    'Accept' => 'application/json',
+                    'Content-Type' => 'application/json',
+                ]
+            ]);
     }
 
     /**
@@ -50,7 +56,7 @@ class Client
         $data = $this->mergeData($this->createAuthData(), $data);
 
         try {
-            $response = $this->httpClient->post($apiMethod, ['json' => $data]);
+            $response = $this->httpClient->post($this->buildUrl($apiMethod), ['json' => $data]);
         } catch (GuzzleException $exception) {
             $this->handleHttpException($exception);
         }
@@ -92,5 +98,14 @@ class Client
                 return $value !== null;
             }
         );
+    }
+
+    /**
+     * @param string $apiMethod
+     * @return string
+     */
+    private function buildUrl(string $apiMethod): string
+    {
+        return self::API_BASE_URI . $apiMethod;
     }
 }
