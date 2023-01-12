@@ -20,11 +20,11 @@ class ApiService extends ServiceAbstract
         $data = UpsertContactData::fromArray($attributes);
 
         $response = $this->client->doRequest($apiMethod, $data->toArray());
-        if ($response->getStatusCode() !== 200) {
-            throw new InvalidRequestException($apiMethod, $data->toArray(), $response);
-        }
+        $response_data = json_decode($response->getBody()->getContents(), true);
 
-        return new UpsertCustomerResponseData(json_decode($response->getBody(), true));
+        $this->checkResponse($response, $apiMethod, $data);
+
+        return new UpsertCustomerResponseData($response_data);
     }
 
     public function addExternalEvent(array $attributes): AddEventResponseData
@@ -42,5 +42,33 @@ class ApiService extends ServiceAbstract
         }
 
         return new AddEventResponseData(json_decode($response->getBody(), true));
+    }
+
+    /**
+     * @param \Psr\Http\Message\ResponseInterface $response
+     * @param string $apiMethod
+     * @param UpsertContactData $data
+     * @throws InvalidRequestException
+     */
+    private function checkResponse(\Psr\Http\Message\ResponseInterface $response, string $apiMethod, UpsertContactData $data): void
+    {
+        if ($response->getStatusCode() !== 200) {
+            throw new InvalidRequestException($apiMethod, $data->toArray(), $response);
+        }
+
+        $response_data = json_decode($response->getBody(), true);
+        if (
+            empty($response_data)
+            || (
+                is_array($response_data) &&
+                (
+                    !array_key_exists('success', $response_data)
+                    || (array_key_exists('success', $response_data) && !$response_data['success'])
+                )
+            )
+        )
+        {
+            throw new InvalidRequestException($apiMethod, $data->toArray(), $response);
+        }
     }
 }
