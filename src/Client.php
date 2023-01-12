@@ -9,7 +9,7 @@ use Psr\Http\Message\ResponseInterface;
 
 class Client
 {
-    const API_BASE_URI = 'https://www.salesmanago.pl/api';
+    const API_BASE_URI = 'https://app2.salesmanago.pl/api';
 
     /**
      * Object containing configuration parameters such as api key, secret and client id.
