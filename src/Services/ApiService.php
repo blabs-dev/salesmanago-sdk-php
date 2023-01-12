@@ -12,9 +12,7 @@ class ApiService extends ServiceAbstract
 {
     public function upsertContact(array $attributes): UpsertCustomerResponseData
     {
-        if (!array_key_exists('owner', $attributes)) {
-            throw new \InvalidArgumentException('owner is a mandatory field');
-        }
+        $this->checkIfOwnerFieldIsPresent($attributes);
 
         $apiMethod = '/contact/upsert';
         $data = UpsertContactData::fromArray($attributes);
@@ -29,9 +27,7 @@ class ApiService extends ServiceAbstract
 
     public function addExternalEvent(array $attributes): AddEventResponseData
     {
-        if (!array_key_exists('owner', $attributes)) {
-            throw new \InvalidArgumentException('owner is a mandatory field');
-        }
+        $this->checkIfOwnerFieldIsPresent($attributes);
 
         $apiMethod = '/contact/addContactExtEvent';
         $data = AddEventData::fromArray($attributes);
@@ -69,6 +65,16 @@ class ApiService extends ServiceAbstract
             )
         ) {
             throw new InvalidRequestException($apiMethod, $data->toArray(), $response);
+        }
+    }
+
+    /**
+     * @param array $attributes
+     */
+    private function checkIfOwnerFieldIsPresent(array $attributes): void
+    {
+        if (!array_key_exists('owner', $attributes)) {
+            throw new \InvalidArgumentException('owner is a mandatory field');
         }
     }
 }
