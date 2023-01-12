@@ -2,7 +2,6 @@
 
 namespace Blabs\SalesManago\Services;
 
-use Blabs\SalesManago\DataTransferObjects\DataModels\ContactData;
 use Blabs\SalesManago\DataTransferObjects\DataModels\ContactInfoData;
 use Blabs\SalesManago\DataTransferObjects\Requests\AddEventData;
 use Blabs\SalesManago\DataTransferObjects\Requests\UpsertContactData;
@@ -18,11 +17,12 @@ class ApiService extends ServiceAbstract
         $apiMethod = '/contact/basic';
         $response = $this->client->doRequest($apiMethod, [
             'owner' => $owner,
-            'email' => $emails
+            'email' => $emails,
         ]);
         $response_data = new ContactsInfoResponseData(json_decode($response->getBody(), true));
+
         return array_map(
-            fn($item) => new ContactInfoData($item),
+            fn ($item) => new ContactInfoData($item),
             $response_data->contacts
         );
     }
