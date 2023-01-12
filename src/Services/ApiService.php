@@ -46,8 +46,9 @@ class ApiService extends ServiceAbstract
 
     /**
      * @param \Psr\Http\Message\ResponseInterface $response
-     * @param string $apiMethod
-     * @param UpsertContactData $data
+     * @param string                              $apiMethod
+     * @param UpsertContactData                   $data
+     *
      * @throws InvalidRequestException
      */
     private function checkResponse(\Psr\Http\Message\ResponseInterface $response, string $apiMethod, UpsertContactData $data): void
@@ -66,8 +67,7 @@ class ApiService extends ServiceAbstract
                     || (array_key_exists('success', $response_data) && !$response_data['success'])
                 )
             )
-        )
-        {
+        ) {
             throw new InvalidRequestException($apiMethod, $data->toArray(), $response);
         }
     }

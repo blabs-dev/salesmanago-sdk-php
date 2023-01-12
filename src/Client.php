@@ -35,12 +35,12 @@ class Client
     {
         $this->config = $config;
         $this->httpClient = $httpClient ?? new HttpClient([
-                //'base_uri' => self::API_BASE_URI,
-                'headers' => [
-                    'Accept' => 'application/json',
-                    'Content-Type' => 'application/json',
-                ]
-            ]);
+            //'base_uri' => self::API_BASE_URI,
+            'headers' => [
+                'Accept'       => 'application/json',
+                'Content-Type' => 'application/json',
+            ],
+        ]);
     }
 
     /**
@@ -102,10 +102,11 @@ class Client
 
     /**
      * @param string $apiMethod
+     *
      * @return string
      */
     private function buildUrl(string $apiMethod): string
     {
-        return self::API_BASE_URI . $apiMethod;
+        return self::API_BASE_URI.$apiMethod;
     }
 }
