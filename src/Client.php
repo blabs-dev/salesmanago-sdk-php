@@ -84,7 +84,7 @@ class Client
     {
         return [
             'clientId'    => $this->config->getClientId(),
-            'apiKey'      => $this->config->getClientId(),
+            'apiKey'      => $this->config->getApiKey(),
             'requestTime' => time(),
             'sha'         => $this->config->getSha(),
         ];
