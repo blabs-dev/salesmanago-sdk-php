@@ -3,6 +3,7 @@
 namespace Blabs\SalesManago\Test;
 
 use Blabs\SalesManago\Configurator;
+use Blabs\SalesManago\DataTransferObjects\DataModels\ContactInfoData;
 use Blabs\SalesManago\ServiceFactory;
 use Blabs\SalesManago\Services\ApiService;
 use GuzzleHttp\Client;
@@ -92,6 +93,50 @@ class ApiServiceTest extends TestCase
 
         $responseData = $service->addExternalEvent($attributes);
         $this->assertEquals('3521dc0f-a934-4b6c-bb08-84f2e144047d', $responseData->eventId);
+    }
+
+    /**
+     * @test
+     */
+    public function it_can_show_contact_info()
+    {
+        $responseMock = new Response(200, [], '{
+            "success": true,
+            "message": [],
+            "contacts": [
+                {
+                    "name": "Banan",
+                    "email": "test@mail.com",
+                    "phone": "+393331231234",
+                    "fax": null,
+                    "score": 90,
+                    "state": "PROSPECT",
+                    "optedOut": false,
+                    "optedOutPhone": false,
+                    "deleted": false,
+                    "invalid": false,
+                    "company": null,
+                    "externalId": "152631",
+                    "address": null,
+                    "contactId": "017ba22b-85ca-11ed-9d06-40a6b73c97e4",
+                    "birthdayYear": "1984",
+                    "birthdayMonth": "8",
+                    "birthdayDay": "4",
+                    "modifiedOn": 1672327453000,
+                    "createdOn": 1672133817000,
+                    "lastVisit": null
+                }
+            ]
+        }');
+
+        $service = $this->mockApiService([$responseMock]);
+
+        $contacts_info = $service->contactInfo(['test@mail.com'], 'test@owners.com');
+
+        $this->assertIsArray($contacts_info);
+        $this->assertCount(1, $contacts_info);
+        $item = $contacts_info[0];
+        $this->assertEquals(ContactInfoData::class, get_class($item));
     }
 
     private function mockHttpClient(array $responses): Client

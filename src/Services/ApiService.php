@@ -2,14 +2,31 @@
 
 namespace Blabs\SalesManago\Services;
 
+use Blabs\SalesManago\DataTransferObjects\DataModels\ContactData;
+use Blabs\SalesManago\DataTransferObjects\DataModels\ContactInfoData;
 use Blabs\SalesManago\DataTransferObjects\Requests\AddEventData;
 use Blabs\SalesManago\DataTransferObjects\Requests\UpsertContactData;
 use Blabs\SalesManago\DataTransferObjects\Responses\AddEventResponseData;
+use Blabs\SalesManago\DataTransferObjects\Responses\ContactsInfoResponseData;
 use Blabs\SalesManago\DataTransferObjects\Responses\UpsertCustomerResponseData;
 use Blabs\SalesManago\Exceptions\InvalidRequestException;
 
 class ApiService extends ServiceAbstract
 {
+    public function contactInfo(array $emails, string $owner): array
+    {
+        $apiMethod = '/contact/basic';
+        $response = $this->client->doRequest($apiMethod, [
+            'owner' => $owner,
+            'email' => $emails
+        ]);
+        $response_data = new ContactsInfoResponseData(json_decode($response->getBody(), true));
+        return array_map(
+            fn($item) => new ContactInfoData($item),
+            $response_data->contacts
+        );
+    }
+
     public function upsertContact(array $attributes): UpsertCustomerResponseData
     {
         $this->checkIfOwnerFieldIsPresent($attributes);
