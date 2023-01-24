@@ -32,7 +32,6 @@ abstract class ServiceAbstract
         return array_replace_recursive($base, $replacements);
     }
 
-
     public function getClient(): Client
     {
         return $this->client;
